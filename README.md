@@ -16,6 +16,16 @@ Disclaimer: This is not an officially supported Google product.
 
 The source code in the "src" directory is licensed under Apache License, Version 2.0. See the LICENSE file for more details. Note that third party code located in the "third_party" directory may be licensed under more restrictive licenses.
 
+## What's New??
+
+Added dockerfile courtesy of [rahulpowar](https://github.com/rahulpowar/monster-mash/blob/main/Dockerfile) (thank you!!). To use:
+`docker build . -t monstermash`
+and `docker run -p 8000:8000 monstermash`
+
+To get built files, while the container is running `docker cp $(docker ps -alq):/app/src/build/Release .`
+
+Also made the monstermash window square, much wow.
+
 ## Building
 
 This project uses CMake (https://cmake.org) for building. Some third party libraries are not part of this repository and must be installed in advance:
