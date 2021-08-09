@@ -1107,7 +1107,7 @@ void MainWindow::handleMousePressEventGeometryMode(const MyMouseEvent &event) {
 
   if (!(VCurr.size() > 0 && proj3DView.size() > 0)) return;
 
-  const int radius = 40;
+  const int radius = 60;
 
   if (event.middleButton ||
       (middleMouseSimulation && (event.leftButton || event.rightButton))) {

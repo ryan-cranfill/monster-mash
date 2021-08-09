@@ -22,9 +22,9 @@ Added dockerfile courtesy of [rahulpowar](https://github.com/rahulpowar/monster-
 `docker build . -t monstermash`
 and `docker run -p 8000:8000 monstermash`
 
-To get built files, while the container is running `docker cp $(docker ps -alq):/app/src/build/Release .`
+To get built files, while the container is running `docker cp $(docker ps -aq --filter ancestor=monstermash):/app/src/build/Release .`
 
-Also made the monstermash window square, much wow.
+Also made the monstermash window square, much wow. Bigger animation handles.
 
 ## Building
 

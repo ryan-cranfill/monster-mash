@@ -18,7 +18,7 @@ using namespace Eigen;
 
 void drawControlPoint(const Def3D::CP &cp, MyPainter &painter, int size,
                       const Eigen::Matrix4d &M) {
-  size *= 2;
+  size *= 3;
   const Vector3d &p = (M * cp.pos.homogeneous()).hnormalized();
   painter.setColor(0, 0, 0, 255);
   painter.filledEllipse(p(0), p(1), size, size);
@@ -29,7 +29,7 @@ void drawControlPoint(const Def3D::CP &cp, MyPainter &painter, int size,
 void drawControlPoint(const Eigen::VectorXd &q, MyPainter &painter, int size,
                       const Eigen::Matrix4d &M, int thickness,
                       const Cu &colorBg, const Cu &colorFg) {
-  size *= 2;
+  size *= 3;
   const Vector3d &p = (M * q.homogeneous()).hnormalized();
   painter.setColor(colorBg);
   painter.filledEllipse(p(0), p(1), size, size);
