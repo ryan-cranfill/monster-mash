@@ -23,7 +23,7 @@ using namespace std;
 
 MainWindow mainWindow(
 //    1000, 800, "Monster Mash: New Sketch-Based Modeling and Animation Tool");
-    720, 720, "Monster Mash: New Sketch-Based Modeling and Animation Tool");
+    480, 480, "Monster Mash: New Sketch-Based Modeling and Animation Tool");
 
 #ifdef __EMSCRIPTEN__
 extern "C" {

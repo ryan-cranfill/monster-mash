@@ -79,13 +79,13 @@ bool saveControlPointsToStream(std::ostream &stream, CPData &cpData,
   auto &layers = imgData.layers;
   auto &mesh = defData.mesh;
 
-  stream << "v. " << APP_VERSION << endl;
+  stream << "v. " << APP_VERSION << endl;  // add version at top
   if (def.getCPs().empty()) return true;
 
   vector<int> vertex2part(mesh.getNumPoints());
   forlist(i, verticesOfParts) forlist(j, verticesOfParts[i])
       vertex2part[verticesOfParts[i][j]] = i;
-  stream << static_cast<int>(def.getCPs().size()) << endl;
+  stream << static_cast<int>(def.getCPs().size()) << endl;  // number of control points
   unordered_map<int, int> cpId2IncId;  // cpId to incremental id
 
   int i = 0;
@@ -100,18 +100,20 @@ bool saveControlPointsToStream(std::ostream &stream, CPData &cpData,
     const int regId = layers[layerId];
     stream << ptId << " " << partId << " " << regId << " " << isBackPart << " "
            << pr << " " << cp.pos.transpose() << endl;
+           // point id, part id, region id, is back part, point, point transposed to 3D??
+           // is this original position + current position? can probably just repeat then...
     cpId2IncId[cpId] = i;
     i++;
   }
 
   // save cps anim
-  stream << cpsAnim.size() << endl;
-  stream << cpId2IncId[cpsAnimSyncId] << endl;
+  stream << cpsAnim.size() << endl;   // number of control points that are animated
+  stream << cpId2IncId[cpsAnimSyncId] << endl;   // animation sync id (this is 0?)
   for (const auto &it : cpsAnim) {
     int cpInd = it.first;
     auto &cpAnim = it.second;
-    stream << cpId2IncId[cpInd] << endl;
-    stream << cpAnim;
+    stream << cpId2IncId[cpInd] << endl;  // write out control point incremental id
+    stream << cpAnim;  // write out control point animation
   }
 
   return true;

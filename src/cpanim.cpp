@@ -163,13 +163,13 @@ ostream &operator<<(ostream &out, const CPAnim &cpAnim) {
   const auto &keyposes = cpAnim.keyposes;
   if (cpAnim.getLength() > 0) {
     bool have_timestamps = keyposes[0].have_timestamp;
-    out << "speedup " << cpAnim.getTemporalScalingFactor() << endl;
-    out << "offset " << cpAnim.getOffset() << endl;
-    out << "have_timestamps " << (have_timestamps ? 1 : 0) << endl;
-    out << static_cast<int>(keyposes.size()) << endl;
+    out << "speedup " << cpAnim.getTemporalScalingFactor() << endl;  // animation speed
+    out << "offset " << cpAnim.getOffset() << endl;  // animation offset - not sure what this does?
+    out << "have_timestamps " << (have_timestamps ? 1 : 0) << endl;  // if the anim is timestamped
+    out << static_cast<int>(keyposes.size()) << endl;  // how many keyframes
     forlist(i, keyposes) {
-      out << keyposes[i].p.transpose();
-      if (have_timestamps) out << " " << keyposes[i].timestamp;
+      out << keyposes[i].p.transpose(); // keyframe position
+      if (have_timestamps) out << " " << keyposes[i].timestamp;  // keyframe timestamp
       out << endl;
     }
   }
